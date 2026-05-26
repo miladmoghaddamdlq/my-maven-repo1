@@ -11,8 +11,7 @@ jobs:
 
       - name: Download AAR file
         run: |
-          curl -L -o lifecycle-runtime-ktx-2.6.2.aar https://dl.google.com/dl/android/maven2/androidx/core/lifecycle-runtime-ktx/2.6.2/lifecycle-runtime-ktx-2.6.2.aar
-
+           curl -L -o lifecycle-runtime-ktx-2.6.2.pom https://dl.google.com/dl/android/maven2/androidx/core/lifecycle-runtime-ktx/2.6.2/lifecycle-runtime-ktx-2.6.2.pom
       - name: Commit and Push
         run: |
           git config --global user.name "GitHub Action"
