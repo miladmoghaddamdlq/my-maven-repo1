@@ -1,4 +1,4 @@
-name: Download Google File
+name: Download Google Files
 on:
   workflow_dispatch:
 
@@ -9,13 +9,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download AAR file
+      - name: Download AAR and POM files
         run: |
-           curl -L -o lifecycle-runtime-ktx-2.6.2.pom https://dl.google.com/dl/android/maven2/androidx/core/lifecycle-runtime-ktx/2.6.2/lifecycle-runtime-ktx-2.6.2.pom
+          curl -L -o lifecycle-runtime-ktx-2.6.2.aar https://dl.google.com/dl/android/maven2/androidx/core/lifecycle-runtime-ktx/2.6.2/lifecycle-runtime-ktx-2.6.2.aar
+          curl -L -o lifecycle-runtime-ktx-2.6.2.pom https://dl.google.com/dl/android/maven2/androidx/core/lifecycle-runtime-ktx/2.6.2/lifecycle-runtime-ktx-2.6.2.pom
+
       - name: Commit and Push
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
-          git add lifecycle-runtime-ktx-2.6.2.aar
-          git commit -m "Added offline file"
+          git add lifecycle-runtime-ktx-2.6.2.aar lifecycle-runtime-ktx-2.6.2.pom
+          git commit -m "Added both offline files" || echo "No changes to commit"
           git push
