@@ -1,0 +1,22 @@
+name: Download Google File
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download AAR file
+        run: |
+          curl -L -o lifecycle-runtime-ktx-2.6.2.aar https://dl.google.com/dl/android/maven2/androidx/core/lifecycle-runtime-ktx/2.6.2/lifecycle-runtime-ktx-2.6.2.aar
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add lifecycle-runtime-ktx-2.6.2.aar
+          git commit -m "Added offline file"
+          git push
